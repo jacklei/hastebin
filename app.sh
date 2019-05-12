@@ -1,5 +1,14 @@
 #!/bin/sh
 
+## Get persistent documents
+if [ -d "$DOCUMENTS_PATH" ]; then
+    for file in "$DOCUMENTS_PATH"/*; do
+        filename=$(basename $file | cut -d. -f1)
+        DOCUMENTS="\"$filename\": \"$file\",$DOCUMENTS"
+    done
+    DOCUMENTS=${DOCUMENTS%?}
+fi
+
 ## write config file from environment vars
 cat > config.js <<EOF
 {
@@ -28,7 +37,7 @@ cat > config.js <<EOF
     "expire": ${STORAGE_EXPIRE:-2592000}
   },
   "documents": {
-    "about": "./about.md"
+    ${DOCUMENTS}
   }
 }
 EOF
