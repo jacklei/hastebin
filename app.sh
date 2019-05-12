@@ -2,9 +2,9 @@
 
 ## Get persistent documents
 if [ -d "$DOCUMENTS_PATH" ]; then
-    for file in "$DOCUMENTS_PATH"/*; do
-        # filename=$(basename $file | cut -d. -f1)
-        DOCUMENTS="\"$file\": \"$file\",$DOCUMENTS"
+    for file in "$DOCUMENTS_PATH"/* "$DOCUMENTS_PATH"/.[^.]*; do
+        filename=$(basename $file)
+        DOCUMENTS="\"$filename\": \"$file\",$DOCUMENTS"
     done
     DOCUMENTS=${DOCUMENTS%?}
 fi
