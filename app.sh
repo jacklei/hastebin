@@ -2,7 +2,7 @@
 
 ## Get persistent documents
 if [[ -d "$DOCUMENTS_PATH" ]]; then
-  for file in "$DOCUMENTS_PATH"/* "$DOCUMENTS_PATH"/.[^.]*; do
+  for file in "$DOCUMENTS_PATH"/*; do
     if [[ -f $file ]]; then
       filename=$(basename $file)
       DOCUMENTS="${DOCUMENTS:+$DOCUMENTS, }\"$filename\": \"$file\""
