@@ -1,12 +1,13 @@
 #!/bin/sh
 
 ## Get persistent documents
-if [ -d "$DOCUMENTS_PATH" ]; then
-    for file in "$DOCUMENTS_PATH"/* "$DOCUMENTS_PATH"/.[^.]*; do
-        filename=$(basename $file)
-        DOCUMENTS="\"$filename\": \"$file\",$DOCUMENTS"
-    done
-    DOCUMENTS=${DOCUMENTS%?}
+if [[ -d "$DOCUMENTS_PATH" ]]; then
+  for file in "$DOCUMENTS_PATH"/* "$DOCUMENTS_PATH"/.[^.]*; do
+    if [[ -f $file ]]; then
+      filename=$(basename $file)
+      DOCUMENTS="${DOCUMENTS:+$DOCUMENTS, }\"$filename\": \"$file\""
+    fi
+  done
 fi
 
 ## write config file from environment vars
