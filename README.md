@@ -1,6 +1,6 @@
 # Hastebin
 
-Forked from rlister/hastebin.
+Forked from rlister/hastebin. This version allows the user to pass in `DOCUMENTS_PATH` and allow those files to be persistent.
 
 [Hastebin](https://github.com/seejohnrun/haste-server) is a simple
 pastebin, which can be installed on a protected network.
