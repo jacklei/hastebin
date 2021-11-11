@@ -5,8 +5,9 @@ LABEL maintainer="jacklei1589@gmail.com"
 WORKDIR /app
 
 RUN apk add --no-cache git && \
-    git clone https://github.com/seejohnrun/haste-server.git /app && \
-    npm install --production
+    git clone https://github.com/toptal/haste-server.git /app && \
+    npm install && \
+    npm install aws-sdk
 
 FROM node:alpine 
 
